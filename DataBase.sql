@@ -4,17 +4,34 @@ CREATE DATABASE proshop;
 USE proshop;
 
 -- TABLE Account --
-DROP TABLE IF EXISTS `User`;
-CREATE TABLE `User` (
-id 			INT PRIMARY KEY AUTO_INCREMENT,
- `username` 	VARCHAR(50),
- email 		VARCHAR(50) NOT NULL UNIQUE,
- `password` VARCHAR(800) NOT NULL,
- `status`	ENUM('NOT_ACTIVE','ACTIVE') NOT NULL,
- `role` 					ENUM('ADMIN','EMPLOYEE','MANAGER') NOT NULL DEFAULT 'EMPLOYEE',
- token		VARCHAR(800)
+-- DROP TABLE IF EXISTS `User`;
+-- CREATE TABLE `User` (
+-- -- user_id 			INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--  `userName` 		VARCHAR(50) PRIMARY KEY,
+--  email 				VARCHAR(255) ,
+--  userPassword 		VARCHAR(800) ,
+--  userFirstName 		VARCHAR(255),
+--  userLastName 		VARCHAR(255)
+--  );
+--  
+--  DROP TABLE IF EXISTS `Role`;
+-- CREATE TABLE `Role` (
+-- -- role_id 			INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+-- roleName 			VARCHAR(255) PRIMARY KEY,
+-- roleDescription 	VARCHAR(255)
+--  );
+--  
+--   DROP TABLE IF EXISTS `users_roles`;
+-- CREATE TABLE `users_roles` (
+-- user_id 		VARCHAR(255) NOT NULL,
+-- role_id			VARCHAR(255) NOT NULL,
 
- );
+--     FOREIGN KEY (user_id ) REFERENCES `User`(userName ),
+--     FOREIGN KEY (role_id	) REFERENCES `Role`(roleName	),
+--     PRIMARY KEY (user_id, role_id)
+--  );
+ 
+ 
  
  /* TABLE Category */
  DROP TABLE IF EXISTS `Category`;
@@ -39,13 +56,23 @@ num_reviews 	INT UNSIGNED,
   FOREIGN KEY (categoryid) REFERENCES `Category`(id)
   );
   
-  INSERT INTO `User`(`username`,               email,                   `password`,                                       `status`    ,    token  ,`role`     )VALUES
-						( 'AdminUser','admin@example.com','$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi' , 'ACTIVE'    ,     ''  , 'ADMIN'    ),                    
-						( 'JohnDoe'  ,'john@example.com' ,'$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi' , 'NOT_ACTIVE',     ''  , 'EMPLOYEE' ),                    
-						( 'JaneDoe'  ,'jane@example.com' ,'$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi' , 'NOT_ACTIVE',     ''  , 'MANAGER'  );                    
-  
+--   INSERT INTO `User`(`userName`,               email   ,   userPassword                                                     )VALUES
+-- 						( 'admin123','admin@example.com',        'admin@pass'               ),                    
+-- 						( 'raj123'  ,'john@example.com'  ,                     );                   
+-- 		                  
+--   
   INSERT INTO `Category`(category)VALUES
 						('Electronics' );
+
+
+--   INSERT INTO `Role`(roleName   )VALUES
+-- 					('Admin'    );
+--                     
+--   INSERT INTO `users_roles`(user_id , role_id     )VALUES
+-- 							(1      ,    1    ),
+-- 							(2      ,    1    ),
+-- 							(3      ,    1    );
+                    
                         
    INSERT INTO `Product`(`name`, image, `description`, brand , categoryid ,price,count_in_stock, rating, num_reviews  )VALUES 
 						('Airpods Wireless Bluetooth Headphones','/images/airpods.jpg',
