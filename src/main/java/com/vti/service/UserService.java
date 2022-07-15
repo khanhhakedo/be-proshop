@@ -1,18 +1,25 @@
 package com.vti.service;
 
+import com.vti.form.CreatingUserForm;
+import com.vti.form.UpdateUserForm;
 import com.vti.repository.RoleRepository;
 import com.vti.repository.UserRepository;
 import com.vti.entity.Role;
 import com.vti.entity.User;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
-public class UserService {
+public class UserService implements  IUserService{
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private UserRepository userRepository;
@@ -57,16 +64,36 @@ public class UserService {
     }
 
     public User registerNewUser(User user) {
-        Role role = roleRepository.findById("User").get();
-        Set<Role> userRoles = new HashSet<>();
-        userRoles.add(role);
-        user.setRole(userRoles);
-        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+//        Role role = roleRepository.findById("User").get();
+//        Set<Role> userRoles = new HashSet<>();
+//        userRoles.add(role);
+//        user.setRole(userRoles);
+//        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
 
         return userRepository.save(user);
     }
 
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
+    }
+
+    @Override
+    public void createUser(CreatingUserForm form) {
+        User user = modelMapper.map(form, User.class);
+        userRepository.save(user);
+    }
+
+
+
+
+    @Override
+    public void updateUser(String username, UpdateUserForm form) {
+        User user = userRepository.getUserByUserName(username);
+        user.setUserName(form.getUsername());
+        user.setUserPassword(form.getPassword());
+        user.setEmail(form.getEmail());
+
+        userRepository.save(user);
+
     }
 }

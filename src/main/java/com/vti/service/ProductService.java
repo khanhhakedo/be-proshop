@@ -24,5 +24,29 @@ public class ProductService implements IProductService {
         return product;
     }
 
+    @Override
+    public List<Product> getProductByName(String name) {
+        List<Product> products = productRepository.getProductByName(name);
+        return products;
+    }
+
+    @Override
+    public List<Product> findByNameLike(String namelike) {
+        List<Product> products = productRepository.findByNameLike(namelike);
+        return products;
+    }
+
+    @Override
+    public List<Product> findByPriceLessThan(Float pricea) {
+        List<Product> products = productRepository.findByPriceLessThan(pricea);
+        return products;
+    }
+
+    @Override
+    public List<Product> findByPriceGreaterThan(Float priceb) {
+        List<Product> products = productRepository.findByPriceGreaterThan(priceb);
+        return products;
+    }
+
 
 }

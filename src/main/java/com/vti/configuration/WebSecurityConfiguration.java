@@ -35,7 +35,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/authenticate",
             // -- API document
             "/api/v1/products",
-            "/api/v1/products/**"
+            "/api/v1/products/**",
+            "/api/v1/users/**",
+            "/api/v1/users"
     };
 
     @Bean

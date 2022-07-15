@@ -1,9 +1,12 @@
 package com.vti.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Data
 public class User {
 
     @Id

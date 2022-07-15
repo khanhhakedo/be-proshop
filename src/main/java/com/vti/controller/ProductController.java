@@ -4,9 +4,11 @@ package com.vti.controller;
 import com.vti.Dto.ProductDto;
 import com.vti.entity.Product;
 
+import com.vti.form.FormSeachProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -63,5 +65,32 @@ public class ProductController {
 
         productDto.setCategory(product.getCategory().getCategory());
         return new ResponseEntity<>(productDto, HttpStatus.OK);
+    }
+
+    @PostMapping()
+    public List<Product> getProduct(@RequestBody FormSeachProduct form) {
+        String a = form.getName();
+        Float b = form.getPrice_start();
+        Float c = form.getPrice_end();
+
+        if (a== null){
+            List<Product> products = IProductService.getall();
+            return products;
+        }else if (a != null){
+            if (b == null){
+                List<Product> products = IProductService.findByNameLike("%"+form.getName()+"%");
+                return products;
+            } else  if (b != null){
+                if (c == null){
+                    List<Product> products = IProductService.findByPriceGreaterThan(b);
+                    return  products;
+                }else  if (c!= null){
+                    List<Product> products = IProductService.findByPriceLessThan(c);
+                    return products;
+                }
+            }
+
+        }return null;
+
     }
 }
