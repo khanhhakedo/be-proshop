@@ -30,7 +30,7 @@ public class UserController {
         userService.initRoleAndUser();
     }
 
-    @GetMapping("byname/{username}")
+    @GetMapping("/{username}")
     public ResponseEntity<?> getAllArticleByName(@PathVariable("username") String username){
 
         User user = userRepository.getUserByUserName(username);
