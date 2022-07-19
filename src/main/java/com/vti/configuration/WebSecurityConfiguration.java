@@ -37,7 +37,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/api/v1/products",
             "/api/v1/products/**",
             "/api/v1/users/**",
-            "/api/v1/users"
+            "/api/v1/users",
+            "/registerNewUser"
     };
 
     @Bean
