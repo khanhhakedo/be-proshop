@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -63,18 +64,13 @@ public class UserService implements  IUserService{
         userRepository.save(user);
     }
 
-    public User registerNewUser(User user) {
-//        Role role = roleRepository.findById("User").get();
-//        Set<Role> userRoles = new HashSet<>();
-//        userRoles.add(role);
-//        user.setRole(userRoles);
-//        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
-
-        return userRepository.save(user);
-    }
-
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
+    }
+    @Override
+    public User getById(Integer id) {
+        User user = userRepository.getById(id);
+        return user;
     }
 
     @Override
@@ -83,17 +79,52 @@ public class UserService implements  IUserService{
         userRepository.save(user);
     }
 
-
-
+    @Override
+    public List<User> findByUserName(String username) {
+        List<User> users = userRepository.findByUserName(username);
+        return users;
+    }
 
     @Override
-    public void updateUser(String username, UpdateUserForm form) {
-        User user = userRepository.getUserByUserName(username);
-        user.setUserName(form.getUsername());
-        user.setUserPassword(form.getPassword());
-        user.setEmail(form.getEmail());
+    public User getByUserName(String username) {
+        User user = userRepository.getByUserName(username);
+        return user;
+    }
 
+    @Override
+    public void updateUser(Integer id, UpdateUserForm form) {
+        User user = userRepository.getById(id);
+        Set<Role> roles = roleRepository.getByRoleName(form.getRolename());
+
+        user.setUserName(form.getUsername());
+        user.setEmail(form.getEmail());
+        user.setUserPassword(form.getPassword());
+        user.setRole(roles);
         userRepository.save(user);
 
+
     }
+
+    @Override
+    @Transactional
+    public List<User> loginUser(String userName, String password) {
+        List<User> users = userRepository.loginUser(userName,password);
+        return users;
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
+
 }
+
+
+
