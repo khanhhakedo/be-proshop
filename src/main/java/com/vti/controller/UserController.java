@@ -1,5 +1,6 @@
 package com.vti.controller;
 
+import com.vti.Dto.UserDto;
 import com.vti.form.CreatingUserForm;
 import com.vti.form.GetUserFormToken;
 import com.vti.form.UpdateUserForm;
@@ -14,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,7 +35,17 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<?> getAllListAccounts() {
         List<User> users = userService.getAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        List<UserDto> userDtos = new ArrayList<>();
+        for (User user : users){
+            UserDto userDto = new UserDto();
+            userDto.setId(user.getId());
+            userDto.setUserName(user.getUserName());
+            userDto.setEmail(user.getEmail());
+            userDto.setRole(user.getRole().toString());
+            userDto.setToken(user.getToken());
+            userDtos.add(userDto);
+        }
+        return new ResponseEntity<>(userDtos, HttpStatus.OK);
     }
 
     // tao moi user
@@ -69,7 +81,7 @@ public class UserController {
     }
 
     // tao moi user
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> createNewUser(@RequestBody CreatingUserForm form) {
         userService.createUser(form);
         return new ResponseEntity<String>("Create successfully!", HttpStatus.OK);

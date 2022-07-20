@@ -31,38 +31,38 @@ public class UserService implements  IUserService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    public void initRoleAndUser() {
-//
-//        Role adminRole = new Role();
-//        adminRole.setRoleName("Admin");
-//        adminRole.setRoleDescription("Admin role");
-//        roleRepository.save(adminRole);
-//
-//        Role userRole = new Role();
-//        userRole.setRoleName("User");
-//        userRole.setRoleDescription("Default role for newly created record");
-//        roleRepository.save(userRole);
-//
-//        User adminUser = new User();
-//        adminUser.setUserName("admin123");
-//        adminUser.setUserPassword(getEncodedPassword("admin@pass"));
-//        adminUser.setUserFirstName("admin");
-//        adminUser.setUserLastName("admin");
-//        Set<Role> adminRoles = new HashSet<>();
-//        adminRoles.add(adminRole);
-//        adminUser.setRole(adminRoles);
-//        userRepository.save(adminUser);
-//
-//        User user = new User();
-//        user.setUserName("raj123");
-//        user.setUserPassword(getEncodedPassword("raj@123"));
-//        user.setUserFirstName("raj");
-//        user.setUserLastName("sharma");
-//        Set<Role> userRoles = new HashSet<>();
-//        userRoles.add(userRole);
-//        user.setRole(userRoles);
-//        userRepository.save(user);
-//    }
+    public void initRoleAndUser() {
+
+        Role adminRole = new Role();
+        adminRole.setRoleName("Admin");
+        adminRole.setRoleDescription("Admin role");
+        roleRepository.save(adminRole);
+
+        Role userRole = new Role();
+        userRole.setRoleName("User");
+        userRole.setRoleDescription("Default role for newly created record");
+        roleRepository.save(userRole);
+
+        User adminUser = new User();
+        adminUser.setUserName("admin123");
+        adminUser.setUserPassword(getEncodedPassword("admin@pass"));
+        adminUser.setUserFirstName("admin");
+        adminUser.setUserLastName("admin");
+        Set<Role> adminRoles = new HashSet<>();
+        adminRoles.add(adminRole);
+        adminUser.setRole(adminRoles);
+        userRepository.save(adminUser);
+
+        User user = new User();
+        user.setUserName("raj123");
+        user.setUserPassword(getEncodedPassword("raj@123"));
+        user.setUserFirstName("raj");
+        user.setUserLastName("sharma");
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(userRole);
+        user.setRole(userRoles);
+        userRepository.save(user);
+    }
 
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
@@ -109,12 +109,10 @@ public class UserService implements  IUserService{
     @Override
     public void updateUser(Integer id, UpdateUserForm form) {
         User user = userRepository.getById(id);
-        Set<Role> roles = roleRepository.getByRoleName(form.getRolename());
 
         user.setUserName(form.getUsername());
         user.setEmail(form.getEmail());
-        user.setUserPassword(form.getPassword());
-        user.setRole(roles);
+        user.setUserPassword(getEncodedPassword(form.getPassword()));
         userRepository.save(user);
 
 

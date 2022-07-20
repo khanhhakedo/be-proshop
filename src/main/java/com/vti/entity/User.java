@@ -15,6 +15,7 @@ public class User {
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String token;
 
     private String userFirstName;
     private String userLastName;
