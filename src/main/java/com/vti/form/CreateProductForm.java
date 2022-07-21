@@ -1,6 +1,6 @@
 package com.vti.form;
 
-import com.vti.entity.Category;
+
 import lombok.Data;
 
 import javax.persistence.JoinColumn;
@@ -9,11 +9,12 @@ import javax.persistence.ManyToOne;
 @Data
 public class CreateProductForm {
 
-    private String name;
-    private String image;
+    private String name = "ProductNew";
+    private String image = "/images/sample.jpg";
     private String description;
     private String brand;
-    private Integer categoryId;
+//    private Integer categoryId = 1;
+    private String category;
     private Float price;
     private Integer countInStock;
     private Float rating;

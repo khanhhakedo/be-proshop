@@ -27,10 +27,10 @@ public class UserController {
     private UserService userService;
 
 
-//    @PostConstruct
-//    public void initRoleAndUser() {
-//        userService.initRoleAndUser();
-//    }
+    @PostConstruct
+    public void initRoleAndUser() {
+        userService.initRoleAndUser();
+    }
     // get All dang list
     @GetMapping()
     public ResponseEntity<?> getAllListAccounts() {
@@ -42,7 +42,6 @@ public class UserController {
             userDto.setUserName(user.getUserName());
             userDto.setEmail(user.getEmail());
             userDto.setRole(user.getRole().toString());
-            userDto.setToken(user.getToken());
             userDtos.add(userDto);
         }
         return new ResponseEntity<>(userDtos, HttpStatus.OK);

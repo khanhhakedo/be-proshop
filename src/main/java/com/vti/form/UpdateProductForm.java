@@ -8,7 +8,8 @@ public class UpdateProductForm {
     private String image;
     private String description;
     private String brand;
-    private Integer categoryId;
+//    private Integer categoryId;
+    private String category;
     private Float price;
     private Integer countInStock;
     private Float rating;

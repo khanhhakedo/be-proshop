@@ -1,6 +1,6 @@
 package com.vti.form;
 
-import com.vti.entity.Category;
+
 import lombok.Data;
 
 import javax.persistence.JoinColumn;

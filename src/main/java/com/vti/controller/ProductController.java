@@ -44,8 +44,8 @@ public class ProductController {
             productDto.setRating(product.getRating());
             productDto.setCountInStock(product.getCountInStock());
             productDto.setNumReviews(product.getNumReviews());
-//            productDto.setCategory(product.getCategory());
-            productDto.setCategory(product.getCategory().getCategory());
+            productDto.setCategory(product.getCategory());
+//            productDto.setCategory(product.getCategory().getCategory());
             productDtos.add(productDto);
 
         }
@@ -69,8 +69,8 @@ public class ProductController {
             productDto.setRating(product.getRating());
             productDto.setCountInStock(product.getCountInStock());
             productDto.setNumReviews(product.getNumReviews());
-//            productDto.setCategory(product.getCategory());
-            productDto.setCategory(product.getCategory().getCategory());
+            productDto.setCategory(product.getCategory());
+//            productDto.setCategory(product.getCategory().getCategory());
             productDtos.add(productDto);
 
         }
@@ -94,7 +94,8 @@ public class ProductController {
         productDto.setCountInStock(product.getCountInStock());
         productDto.setNumReviews(product.getNumReviews());
 
-        productDto.setCategory(product.getCategory().getCategory());
+//        productDto.setCategory(product.getCategory().getCategory());
+        productDto.setCategory(product.getCategory());
         return new ResponseEntity<>(productDto, HttpStatus.OK);
     }
 

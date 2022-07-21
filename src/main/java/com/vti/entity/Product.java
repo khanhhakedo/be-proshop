@@ -17,9 +17,9 @@ public class Product {
     private String image;
     private String description;
     private String brand;
-    @ManyToOne
-    @JoinColumn(name = "CategoryID")
-    private Category category;
+//    @ManyToOne
+//    @JoinColumn(name = "CategoryID")
+    private String category;
     private Float price;
     private Integer countInStock;
     private Float rating;

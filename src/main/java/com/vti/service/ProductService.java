@@ -1,10 +1,10 @@
 package com.vti.service;
 
 
-import com.vti.entity.Category;
+//import com.vti.entity.Category;
 import com.vti.form.CreateProductForm;
 import com.vti.form.UpdateProductForm;
-import com.vti.repository.CategoryRepository;
+//import com.vti.repository.CategoryRepository;
 import com.vti.repository.ProductRepository;
 import com.vti.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+//    @Autowired
+//    private CategoryRepository categoryRepository;
 
 
     public List<Product> getall() {
@@ -70,7 +70,8 @@ public class ProductService implements IProductService {
         String image = form.getImage();
         String description = form.getDescription();
         String brand = form.getBrand();
-        Integer categoryId = form.getCategoryId();
+//        Integer categoryId = form.getCategoryId();
+        String category = form.getCategory();
         Float price = form.getPrice();
         Integer countInStock =form.getCountInStock();
         Float rating = form.getRating();
@@ -88,21 +89,23 @@ public class ProductService implements IProductService {
         product.setRating(rating);
         product.setNumReviews(numReviews);
 
-        Category categories = categoryRepository.getCategoryById(categoryId);
-        product.setCategory(categories);
+        product.setCategory(category);
+//        Category categories = categoryRepository.getCategoryById(categoryId);
+//        product.setCategory(categories);
         productRepository.save(product);
     }
 
     @Override
     public void update(Integer id, UpdateProductForm form) {
         Product product = productRepository.getProductById(id);
-        Category category = categoryRepository.getCategoryById(form.getCategoryId());
+//        Category category = categoryRepository.getCategoryById(form.getCategoryId());
 
         product.setName(form.getName());
         product.setImage(form.getImage());
         product.setDescription(form.getDescription());
         product.setBrand(form.getBrand());
-        product.setCategory(category);
+//        product.setCategory(category);
+        product.setCategory(form.getCategory());
         product.setPrice(form.getPrice());
         product.setCountInStock(form.getCountInStock());
         product.setRating(form.getRating());
