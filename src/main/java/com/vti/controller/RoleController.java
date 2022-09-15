@@ -1,7 +1,7 @@
 package com.vti.controller;
 
-import com.vti.service.RoleService;
 import com.vti.entity.Role;
+import com.vti.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;

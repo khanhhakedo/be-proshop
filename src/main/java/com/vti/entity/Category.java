@@ -1,4 +1,4 @@
-//package com.vti.entity;
+package com.vti.entity;//package com.vti.entity;
 //
 //import lombok.Data;
 //

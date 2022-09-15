@@ -3,9 +3,6 @@ package com.vti.form;
 
 import lombok.Data;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 @Data
 public class FormSeachProduct {
 

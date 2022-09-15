@@ -1,13 +1,11 @@
 package com.vti.controller;
 
 import com.vti.Dto.UserDto;
-import com.vti.form.CreatingUserForm;
-import com.vti.form.GetUserFormToken;
-import com.vti.form.UpdateUserForm;
-import com.vti.repository.UserRepository;
-import com.vti.service.IUserService;
-import com.vti.service.UserService;
 import com.vti.entity.User;
+import com.vti.form.CreatingUserForm;
+import com.vti.form.UpdateUserForm;
+import com.vti.service.EmailService;
+import com.vti.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +20,17 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping(value = "api/v1/users")
 public class UserController {
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private UserService userService;
 
 
-    @PostConstruct
-    public void initRoleAndUser() {
-        userService.initRoleAndUser();
-    }
+//    @PostConstruct
+//    public void initRoleAndUser() {
+//        userService.initRoleAndUser();
+//    }
     // get All dang list
     @GetMapping()
     public ResponseEntity<?> getAllListAccounts() {
@@ -47,12 +47,12 @@ public class UserController {
         return new ResponseEntity<>(userDtos, HttpStatus.OK);
     }
 
-    // tao moi user
-    @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody GetUserFormToken form) {
-        List<User> user = userService.loginUser(form.getUserName(), form.getUserPassword());
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+//    // tao moi user
+//    @PostMapping("/login")
+//    public ResponseEntity<?> loginUser(@RequestBody GetUserFormToken form) {
+//        List<User> user = userService.loginUser(form.getUserName(), form.getUserPassword());
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 
 
     @GetMapping("/username/{userName}")
@@ -83,6 +83,7 @@ public class UserController {
     @PostMapping("/create")
     public ResponseEntity<?> createNewUser(@RequestBody CreatingUserForm form) {
         userService.createUser(form);
+        String status = emailService.sendMailWithAttachment(form);
         return new ResponseEntity<String>("Create successfully!", HttpStatus.OK);
     }
 

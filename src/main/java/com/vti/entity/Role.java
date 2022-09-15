@@ -1,8 +1,7 @@
 package com.vti.entity;
 
-import lombok.Data;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Role {

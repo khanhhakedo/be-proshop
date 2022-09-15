@@ -1,15 +1,13 @@
 package com.vti.form;
 
-import com.vti.entity.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 public class CreatingUserForm {
 
+    private String link ;
     private Integer id;
     private String userName;
 

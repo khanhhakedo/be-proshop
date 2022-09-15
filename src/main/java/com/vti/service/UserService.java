@@ -1,11 +1,11 @@
 package com.vti.service;
 
+import com.vti.entity.Role;
+import com.vti.entity.User;
 import com.vti.form.CreatingUserForm;
 import com.vti.form.UpdateUserForm;
 import com.vti.repository.RoleRepository;
 import com.vti.repository.UserRepository;
-import com.vti.entity.Role;
-import com.vti.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

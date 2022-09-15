@@ -1,4 +1,4 @@
-//package com.vti.repository;
+package com.vti.repository;//package com.vti.repository;
 //
 //
 //import com.vti.entity.Category;

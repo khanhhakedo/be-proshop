@@ -1,9 +1,9 @@
 package com.vti.service;
 
-import com.vti.repository.UserRepository;
 import com.vti.entity.JwtRequest;
 import com.vti.entity.JwtResponse;
 import com.vti.entity.User;
+import com.vti.repository.UserRepository;
 import com.vti.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

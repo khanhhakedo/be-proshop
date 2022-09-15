@@ -3,7 +3,6 @@ package com.vti.controller;
 
 import com.vti.Dto.ProductDto;
 import com.vti.entity.Product;
-
 import com.vti.form.CreateProductForm;
 import com.vti.form.FormSeachProduct;
 import com.vti.form.UpdateProductForm;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
